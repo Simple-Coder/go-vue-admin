@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"reflect"
 	"sync"
+	"time"
 )
 
 func main() {
@@ -254,14 +255,131 @@ func main() {
 	/**
 	断言和反射
 	*/
-	stu := Student{
-		Name: "张三",
-		Age:  0,
-		School: School{
-			"鹿泉一中",
-		},
-	}
-	check(&stu)
+	//stu := Student{
+	//	Name: "张三",
+	//	Age:  0,
+	//	School: School{
+	//		"鹿泉一中",
+	//	},
+	//}
+	//check(&stu)
+	SyncClass()
+}
+func SyncClass() {
+	//1.互斥锁 mutex
+	//mutex := &sync.Mutex{}
+	//go lockFun(mutex)
+	//go lockFun(mutex)
+	//go lockFun(mutex)
+	//go lockFun(mutex)
+	//for {
+	//
+	//}
+
+	//2.读写
+	//mutex := &sync.RWMutex{}
+	//go lockFun(mutex)
+	//go lockFun(mutex)
+	//go lockReadFun(mutex)
+	//go lockReadFun(mutex)
+	//go lockReadFun(mutex)
+	//go lockReadFun(mutex)
+	//for {
+	//}
+
+	////3. once 只会执行一次
+	//once := &sync.Once{}
+	//for i := 0; i < 5; i++ {
+	//	once.Do(func() {
+	//		fmt.Println("我执行了")
+	//	})
+	//}
+
+	//4. waitGroup
+	//group := &sync.WaitGroup{}
+	//group.Add(2)
+	//
+	//go func() {
+	//	time.Sleep(3 * time.Second)
+	//	fmt.Println("hp -1")
+	//	group.Done()
+	//}()
+	//go func() {
+	//	time.Sleep(6 * time.Second)
+	//	fmt.Println("hp -1")
+	//	group.Done()
+	//}()
+	//
+	//group.Wait()
+	//fmt.Println("hp==0 over")
+
+	//5.map
+	//m := &sync.Map{}
+	//go func() {
+	//	for {
+	//		m.Store(1, 1)
+	//	}
+	//}()
+	//go func() {
+	//	for {
+	//		fmt.Println(m.Load(1))
+	//	}
+	//}()
+	//time.Sleep(100)
+
+	//m.Store(1, 1)
+	//m.Store(2, 2)
+	//m.Store(3, 3)
+	//m.Range(func(key, value interface{}) bool {
+	//	fmt.Println(key, value)
+	//	time.Sleep(1 * time.Second)
+	//	return true
+	//})
+
+	//并发池
+	//pool := &sync.Pool{}
+	//pool.Put(1)
+	//pool.Put(2)
+	//pool.Put(3)
+	//pool.Put(4)
+	//for i := 0; i < 4; i++ {
+	//	fmt.Println(pool.Get())
+	//}
+
+	//等待唤醒机制
+	co := sync.NewCond(&sync.Mutex{})
+	go func() {
+		co.L.Lock()
+		fmt.Println("lock1")
+		co.Wait()
+		fmt.Println("unlock1")
+		co.L.Unlock()
+	}()
+	go func() {
+		co.L.Lock()
+		fmt.Println("lock2")
+		co.Wait()
+		fmt.Println("unlock2")
+		co.L.Unlock()
+	}()
+
+	time.Sleep(2 * time.Second)
+	//co.Broadcast()
+	co.Signal()
+	co.Signal()
+	time.Sleep(2 * time.Second)
+}
+func lockFun(lock *sync.RWMutex) {
+	lock.Lock()
+	fmt.Println("疯狂刮痧。。")
+	time.Sleep(1 * time.Second)
+	lock.Unlock()
+}
+func lockReadFun(lock *sync.RWMutex) {
+	lock.RLock()
+	fmt.Println("疯狂治疗。。")
+	time.Sleep(1 * time.Second)
+	lock.RUnlock()
 }
 
 //断言和反射 开始
