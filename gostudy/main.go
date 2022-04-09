@@ -31,6 +31,27 @@ func main() {
 	//a := [3]int{0, 1, 3}
 	//cl := a[2:]
 	//fmt.Println(cl)
+	//append
 	//cl = append(cl, 5)
 	//fmt.Println(cl)
+	//copy
+	//copy()
+
+	/*
+		map
+	*/
+
+	//m1 := map[string]string{}
+	//m1 := make(map[string]string)
+	//m1["name"] = "张三"
+	//m1["name1"] = "张三1"
+	//fmt.Println(m1, len(m1))
+	//
+	//delete(m1, "name")
+	//fmt.Println(m1, len(m1))
+	//
+	//for k, v := range m1 {
+	//	fmt.Println(k, v)
+	//}
+
 }
