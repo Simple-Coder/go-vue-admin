@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 	"sync"
 )
 
@@ -242,15 +243,76 @@ func main() {
 	//	fmt.Println("都不满足")
 	//}
 
-	c := make(chan int)
-	var readc <-chan int = c
-	var writec chan<- int = c
+	//c := make(chan int)
+	//var readc <-chan int = c
+	//var writec chan<- int = c
+	//
+	//go SetChan(writec)
+	//
+	//GetChan(readc)
 
-	go SetChan(writec)
-
-	GetChan(readc)
-
+	/**
+	断言和反射
+	*/
+	stu := Student{
+		Name: "张三",
+		Age:  0,
+		School: School{
+			"鹿泉一中",
+		},
+	}
+	check(&stu)
 }
+
+//断言和反射 开始
+func check(obj interface{}) {
+	//v.(Student).SaySchool("鹿泉一中")
+	//switch v.(type) {
+	//case User:
+	//	fmt.Printf("user")
+	//case Student:
+	//	fmt.Printf("student")
+	//
+	//}
+
+	//t := reflect.TypeOf(obj)
+	v := reflect.ValueOf(obj)
+	//for i := 0; i < t.NumField(); i++ {
+	//	fmt.Println(v.Field(i))
+	//}
+	//
+	//fmt.Println(t, v)
+	//fmt.Println(v.FieldByIndex([]int{0}))
+	//fmt.Println(v.FieldByIndex([]int{2, 0}))
+	//fmt.Println(v.FieldByName("Name"))
+
+	//ty := t.Kind()
+	//if ty == reflect.Struct {
+	//	fmt.Println("我是struct")
+	//}
+	//if ty == reflect.String {
+	//
+	//}
+
+	elem := v.Elem()
+	elem.FieldByName("Name").SetString("张三三=")
+	fmt.Println(obj)
+}
+
+type Student struct {
+	Name string
+	Age  int
+	School
+}
+type School struct {
+	Name string
+}
+
+func (stu Student) SaySchool(name string) {
+	fmt.Println("我的学校是", name)
+}
+
+//断言和反射 结束
 
 //goroutine channel开始
 
