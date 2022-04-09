@@ -157,7 +157,51 @@ func main() {
 	//user.Eat("面条")
 	//fmt.Println(user)
 	//user.MyHome.Open()
+
+	/**
+	接口  Interface
+	*/
+	c := Cat{
+		Name: "Tom",
+		Sex:  false,
+	}
+	MyFunc(c)
 }
+
+//----接口开始
+
+type Animal interface {
+	Eat()
+	Run()
+}
+type Cat struct {
+	Name string
+	Sex  bool
+}
+type Dog struct {
+	Name string
+	Sex  bool
+}
+
+func (cat Cat) Eat() {
+	fmt.Println(cat.Name, "开始吃")
+}
+func (cat Cat) Run() {
+	fmt.Println(cat.Name, "开始跑")
+}
+func (dog Dog) Eat() {
+	fmt.Println(dog.Name, "开始吃")
+}
+func (dog Dog) Run() {
+	fmt.Println(dog.Name, "开始跑")
+}
+
+func MyFunc(animal Animal) {
+	animal.Run()
+	animal.Eat()
+}
+
+//----接口结束
 
 type User struct {
 	Name   string
