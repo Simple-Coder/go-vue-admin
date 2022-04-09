@@ -1,27 +1,36 @@
 package main
 
-import (
-	"fmt"
-	"strconv"
-
-	//"gostudy/testpackage"
-	//cool "gostudy/testpackage"
-	. "gostudy/testpackage"
-)
-
 func main() {
-	//声明
-	var a string = "hello go go "
-	fmt.Println(a)
-	b := "hello go go bbb"
-	fmt.Println(b)
-	fmt.Println(A)
-	fmt.Println("----基本数据类型")
+	////声明
+	//var a string = "hello go go "
+	//fmt.Println(a)
+	//b := "hello go go bbb"
+	//fmt.Println(b)
+	//fmt.Println(A)
+	//fmt.Println("----基本数据类型")
+	//
+	//var str1 string = "123"
+	//atoi, _ := strconv.Atoi(str1)
+	//
+	//fmt.Println(atoi)
+	//fmt.Printf("%T", atoi)
 
-	var str1 string = "123"
-	atoi, _ := strconv.Atoi(str1)
+	//数组和切片
+	//a := [3]int{0, 2, 1}
+	//b := [...]int{0, 2, 1}
+	//c := new([10]int)
+	//fmt.Println(a, b, c)
+	//
+	//for i, v := range a {
+	//	fmt.Println(i, v)
+	//}
+	//
+	//fmt.Println(len(a), cap(a))
 
-	fmt.Println(atoi)
-	fmt.Printf("%T", atoi)
-
+	//切片
+	//a := [3]int{0, 1, 3}
+	//cl := a[2:]
+	//fmt.Println(cl)
+	//cl = append(cl, 5)
+	//fmt.Println(cl)
 }
