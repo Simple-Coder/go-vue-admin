@@ -109,12 +109,75 @@ func main() {
 	//*arrpp[2] = "33333"
 	//fmt.Println(str3)
 
-	var str1 = "我定义了"
-	fmt.Println(str1)
-	pointFun(&str1)
-	fmt.Println(str1)
+	//var str1 = "我定义了"
+	//fmt.Println(str1)
+	//pointFun(&str1)
+	//fmt.Println(str1)
 
+	/*结构体*/
+	//var user User
+	//user.Name = "张三"
+	//user.Age = 18
+	//user.Sex = true
+	//user.hobby = []string{"篮球"}
+	//fmt.Println(user)
+
+	//user := User{
+	//	Name:  "李四",
+	//	Age:   0,
+	//	Sex:   true,
+	//	hobby: []string{"乒乓球"},
+	//}
+	//fmt.Println(user)
+	//
+	//user := new(User)
+	//user.Name = "new name"
+	//
+	//c := user
+	//c.Age = 15
+	//fmt.Println(user)
+
+	//var user1 *User
+	//user1 = &user
+	//
+	////user1.Name = "修改了"
+	//(*user1).Name = "修改了"
+	//fmt.Println(user, user1, *user1, &user1)
+
+	//user := User{
+	//	Name:  "李四",
+	//	Age:   0,
+	//	Sex:   true,
+	//	hobby: []string{"乒乓球"},
+	//	MyHome: Home{
+	//		address: "北京",
+	//	},
+	//}
+	//
+	//user.Eat("面条")
+	//fmt.Println(user)
+	//user.MyHome.Open()
 }
+
+type User struct {
+	Name   string
+	Age    int
+	Sex    bool
+	hobby  []string
+	MyHome Home
+}
+
+type Home struct {
+	address string
+}
+
+func (home *Home) Open() {
+	fmt.Println("open", home.address)
+}
+func (user *User) Eat(foodName string) {
+	fmt.Printf("%v正在吃%v", user.Name, foodName)
+}
+
 func pointFun(p1 *string) {
 	*p1 = "我变了"
 }
