@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	////声明
 	//var a string = "hello go go "
@@ -54,4 +56,40 @@ func main() {
 	//	fmt.Println(k, v)
 	//}
 
+	/**
+	  func
+	*/
+	//b := func() {
+	//	fmt.Println("我是匿名函数")
+	//}
+	//b()
+	//ar := []string{"123", "falksdjf "}
+	//sum(1, ar...)
+
+	//自执行函数
+	//(func() {
+	//	fmt.Println("我是自治性函数")
+	//})()
+
+	//mo()(4)
+	defer first()
+	fmt.Println(123)
+}
+
+func first() {
+	fmt.Println("我想最先执行")
+}
+
+//闭包函数
+func mo() func(int) {
+	return func(num int) {
+		fmt.Println("闭包函数", num)
+	}
+}
+
+func sum(a int, b ...string) int {
+	for k, v := range b {
+		fmt.Println(k, v)
+	}
+	return 0
 }
