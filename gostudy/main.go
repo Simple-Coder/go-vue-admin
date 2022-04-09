@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 func main() {
 	////声明
@@ -161,12 +164,112 @@ func main() {
 	/**
 	接口  Interface
 	*/
-	c := Cat{
-		Name: "Tom",
-		Sex:  false,
-	}
-	MyFunc(c)
+	//c := Cat{
+	//	Name: "Tom",
+	//	Sex:  false,
+	//}
+	//MyFunc(c)
+
+	/**
+	goroutine channel通讯桥梁
+	*/
+
+	//var wg sync.WaitGroup
+	//wg.Add(1)
+	//go Run(&wg)
+	//wg.Wait()
+
+	//无缓冲区channel
+	//c1 := make(chan int)
+	//有缓冲区channel
+	//c1 := make(chan int, 5)
+	//go func() {
+	//	for i := 0; i < 10; i++ {
+	//		c1 <- i
+	//	}
+	//}()
+	//
+	//for i := 0; i < 10; i++ {
+	//	fmt.Println(<-c1)
+	//}
+
+	//c1 := make(chan int, 5)
+	//var readc <-chan int = c1
+	//var writec chan<- int = c1
+	//writec <- 1
+	//fmt.Println(<-readc)
+
+	//c1 := make(chan int, 5)
+	//c1 <- 1
+	//c1 <- 2
+	//c1 <- 3
+	//c1 <- 4
+	//c1 <- 5
+	//close(c1) //用完关闭
+	//fmt.Println(<-c1)
+	//fmt.Println(<-c1)
+	//fmt.Println(<-c1)
+	//fmt.Println(<-c1)
+	//fmt.Println(<-c1)
+
+	//c1 := make(chan int, 5)
+	//c1 <- 1
+	//c1 <- 2
+	//c1 <- 3
+	//c1 <- 4
+	//c1 <- 5
+	//close(c1) //先close 才能用for range
+	//for v := range c1 {
+	//	fmt.Println(v)
+	//}
+
+	//c1 := make(chan int, 5)
+	//c2 := make(chan int, 5)
+	//c3 := make(chan int, 5)
+	//
+	//c1 <- 123
+	//c2 <- 123
+	//c3 <- 123
+	////随机执行多个
+	//select {
+	//case <-c1:
+	//	fmt.Println("c1")
+	//case <-c2:
+	//	fmt.Println("c2")
+	//case <-c3:
+	//	fmt.Println("c3")
+	//default:
+	//	fmt.Println("都不满足")
+	//}
+
+	c := make(chan int)
+	var readc <-chan int = c
+	var writec chan<- int = c
+
+	go SetChan(writec)
+
+	GetChan(readc)
+
 }
+
+//goroutine channel开始
+
+func Run(wg *sync.WaitGroup) {
+	fmt.Println("我跑起来了")
+	wg.Done()
+}
+func GetChan(readc <-chan int) {
+	for i := 0; i < 10; i++ {
+		fmt.Printf("get函数取到set函数返回信息：%d \n", <-readc)
+	}
+}
+func SetChan(writec chan<- int) {
+	for i := 0; i < 10; i++ {
+		writec <- i
+	}
+}
+
+//goroutine channel结束
 
 //----接口开始
 
