@@ -108,6 +108,15 @@ func main() {
 	//arrpp = [5]*string{&str1, &str2, &str3, &str4, &str5}
 	//*arrpp[2] = "33333"
 	//fmt.Println(str3)
+
+	var str1 = "我定义了"
+	fmt.Println(str1)
+	pointFun(&str1)
+	fmt.Println(str1)
+
+}
+func pointFun(p1 *string) {
+	*p1 = "我变了"
 }
 
 func first() {
