@@ -72,8 +72,42 @@ func main() {
 	//})()
 
 	//mo()(4)
-	defer first()
-	fmt.Println(123)
+	//defer first()
+	//fmt.Println(123)
+
+	/*指针*/
+
+	//var a int = 123
+	//
+	//fmt.Println(a)
+	//var b *int
+	////取地址
+	//b = &a
+	////修改值
+	//*b = 999
+	//fmt.Println(a, b)
+	//fmt.Println(a == *b, &a == b)
+	//
+	//fmt.Println("-------")
+	////数组指针和指针数组
+	//var arr [5]string
+	//arr = [5]string{"1,2,3,4,5"}
+	//var arrp *[5]string
+	//arrp = &arr
+	//
+	//fmt.Println(arrp)
+	//
+	////指针数组
+	//var arrpp [5]*string
+	//var str1 = "str1"
+	//var str2 = "str2"
+	//var str3 = "str3"
+	//var str4 = "str4"
+	//var str5 = "str5"
+	//
+	//arrpp = [5]*string{&str1, &str2, &str3, &str4, &str5}
+	//*arrpp[2] = "33333"
+	//fmt.Println(str3)
 }
 
 func first() {
