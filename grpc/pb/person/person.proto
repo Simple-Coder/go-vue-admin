@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package person;
+
+//option go_package="包路径(从mod下开始写);别名";
+option go_package="grpc_learn/pb/person;person";
+
+import "home/home.proto";
+
+message Home{
+  repeated Person persons=1;
+}
+
+message Person{
+
+  string Name =1;
+  int32 age =2;
+//  bool sex=3;
+  enum SEX{
+    option allow_alias =true;
+    MAN=0;
+    WOMAN=1;
+    GIRL=1;
+  }
+  SEX sex=3;
+  repeated string test=4;
+  map<string,string> test_map=5;
+
+
+  home.Home i_home =8;
+  //保留字
+//  repeated "test_map";
+//  repeated 5;
+}
