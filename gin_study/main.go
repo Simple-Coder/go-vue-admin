@@ -4,10 +4,15 @@ import "github.com/gin-gonic/gin"
 
 func main() {
 	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
+	r.GET("/path/:id", func(c *gin.Context) {
+		id := c.Param("id")
+		user := c.Query("user")
+		pwd := c.DefaultQuery("pwd", "123456")
 		c.JSON(200, gin.H{
-			"message": "pong",
+			"id":   id,
+			"user": user,
+			"pwd":  pwd,
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	r.Run(":8080") // listen and serve on 0.0.0.0:8080
 }
