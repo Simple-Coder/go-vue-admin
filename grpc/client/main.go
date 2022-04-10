@@ -1,12 +1,8 @@
 package main
 
 import (
-	"context"
-	"fmt"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"grpc_learn/pb/user"
-	"sync"
 )
 
 func main() {
@@ -14,7 +10,7 @@ func main() {
 	//fmt.Println(err)
 	defer conn.Close()
 
-	client := user.NewWorkServiceClient(conn)
+	//client := user.NewWorkServiceClient(conn)
 
 	//传统
 	//work, err := client.Work(context.Background(), &user.UserReq{
@@ -48,31 +44,31 @@ func main() {
 	//	fmt.Println(recv)
 	//}
 
-	c4, _ := client.WorkStreamAll(context.Background())
-	wg := sync.WaitGroup{}
-	wg.Add(2)
-	go func() {
-		for {
-			//time.Sleep(1 * time.Second)
-			err := c4.Send(&user.UserReq{Name: "我是张三"})
-			if err != nil {
-				fmt.Println(err)
-				wg.Done()
-				break
-			}
-		}
-	}()
-
-	go func() {
-		for true {
-			recv, err := c4.Recv()
-			if err != nil {
-				fmt.Println(err)
-				wg.Done()
-				break
-			}
-			fmt.Println("client收到：" + recv.GetName())
-		}
-	}()
-	wg.Wait()
+	//c4, _ := client.WorkStreamAll(context.Background())
+	//wg := sync.WaitGroup{}
+	//wg.Add(2)
+	//go func() {
+	//	for {
+	//		//time.Sleep(1 * time.Second)
+	//		err := c4.Send(&user.UserReq{Name: "我是张三"})
+	//		if err != nil {
+	//			fmt.Println(err)
+	//			wg.Done()
+	//			break
+	//		}
+	//	}
+	//}()
+	//
+	//go func() {
+	//	for true {
+	//		recv, err := c4.Recv()
+	//		if err != nil {
+	//			fmt.Println(err)
+	//			wg.Done()
+	//			break
+	//		}
+	//		fmt.Println("client收到：" + recv.GetName())
+	//	}
+	//}()
+	//wg.Wait()
 }
