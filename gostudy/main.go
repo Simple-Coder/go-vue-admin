@@ -347,33 +347,76 @@ func SyncClass() {
 	//}
 
 	//等待唤醒机制
-	co := sync.NewCond(&sync.Mutex{})
-	go func() {
-		co.L.Lock()
-		fmt.Println("lock1")
-		co.Wait()
-		fmt.Println("unlock1")
-		co.L.Unlock()
-	}()
-	go func() {
-		co.L.Lock()
-		fmt.Println("lock2")
-		co.Wait()
-		fmt.Println("unlock2")
-		co.L.Unlock()
-	}()
+	//co := sync.NewCond(&sync.Mutex{})
+	//go func() {
+	//	co.L.Lock()
+	//	fmt.Println("lock1")
+	//	co.Wait()
+	//	fmt.Println("unlock1")
+	//	co.L.Unlock()
+	//}()
+	//go func() {
+	//	co.L.Lock()
+	//	fmt.Println("lock2")
+	//	co.Wait()
+	//	fmt.Println("unlock2")
+	//	co.L.Unlock()
+	//}()
+	//
+	//time.Sleep(2 * time.Second)
+	////co.Broadcast()
+	//co.Signal()
+	//co.Signal()
+	//time.Sleep(2 * time.Second)
 
-	time.Sleep(2 * time.Second)
-	//co.Broadcast()
-	co.Signal()
-	co.Signal()
-	time.Sleep(2 * time.Second)
-}
-func lockFun(lock *sync.RWMutex) {
-	lock.Lock()
-	fmt.Println("疯狂刮痧。。")
-	time.Sleep(1 * time.Second)
-	lock.Unlock()
+	/**
+	文件操作
+	*/
+
+	//file, err := os.OpenFile("./test.txt", os.O_CREATE|os.O_RDWR, 0777)
+	//if err != nil {
+	//	fmt.Println(err)
+	//	return
+	//}
+	//for true {
+	//	defer file.Close()
+	//	bytes := make([]byte, 12)
+	//	read, err := file.Read(bytes)
+	//	if err != nil {
+	//		return
+	//	}
+	//	fmt.Println(string(bytes), read)
+	//}
+	//追加
+	//file.Seek(0, io.SeekEnd)
+	//file.Write([]byte("1234566788"))
+
+	//
+	//defer file.Close()
+	//reader := bufio.NewReader(file)
+	//reader.ReadLine()
+
+	//defer file.Close()
+	//all, err := ioutil.ReadAll(file)
+	//fmt.Println(string(all))
+	//dir, err := os.ReadDir("./")
+	//fmt.Println(dir, err)
+	//for _, entry := range dir {
+	//	fmt.Println(entry.Name())
+	//	fmt.Println(entry.Type())
+	//}
+
+	//缓冲区
+	//writer := bufio.NewWriter(file)
+	//writer.WriteString()
+	//writer.Flush()
+	//reader := bufio.NewReader(file)
+
+	//复制文件
+
+	//从头覆盖操作
+	//io.Copy()
+
 }
 func lockReadFun(lock *sync.RWMutex) {
 	lock.RLock()
