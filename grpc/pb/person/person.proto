@@ -32,3 +32,11 @@ message Person{
 //  repeated "test_map";
 //  repeated 5;
 }
+
+service WorkService{
+  rpc work(Person) returns (Person); //传统的即刻响应
+  rpc workStreamIn(stream Person) returns (Person); //入参为流
+  rpc workStreamOut(Person) returns (stream Person); //入参为流
+  rpc workStreamAll(stream Person) returns (stream Person); //入参为流
+
+}
