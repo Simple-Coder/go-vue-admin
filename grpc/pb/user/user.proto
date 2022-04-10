@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package user;
+
+//option go_package="包路径(从mod下开始写);别名";
+option go_package = "grpc_learn/pb/user;user";
+
+
+message UserReq{
+  string Name = 1;
+  int32 age = 2;
+}
+message UserRes{
+  string Name = 1;
+  int32 age = 2;
+}
+
+service WorkService{
+  rpc work(UserReq) returns (UserRes); //传统的即刻响应
+  rpc workStreamIn(stream UserReq) returns (UserRes); //入参为流
+  rpc workStreamOut(UserReq) returns (stream UserRes); //入参为流
+  rpc workStreamAll(stream UserReq) returns (stream UserRes); //入参为流
+
+}
