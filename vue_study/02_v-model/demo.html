@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 v-model 学习</title>
+</head>
+
+
+<!-- 只有在表单中才能使用v-model -->
+
+<body>
+    <div id="app">
+        <br>
+        {{message}} <br>
+        {{1+2}} <br>
+        {{message=="xiedong"?"真的帅":"真的真的帅"}}
+        {{message.split('').reverse().join("")}}
+        <input v-model="message" type="text" />
+
+        <br>
+        check:{{check}}
+
+        <br>
+
+        <input v-model.number="num1" type="number" />
+        <input v-model.number="num2" type="number" />
+        {{num1+num2}}
+        <br>
+        <input v-model.trim="msg" type="text" />
+
+
+        <br>
+        <input v-model="check" type="checkbox" value="A" id="a" />
+        <label for="a">我是A</label>
+        <input v-model="check" type="checkbox" value="B" id="b" />
+        <label for="b">我是B</label>
+        <input v-model="check" type="checkbox" value="C" id="c" />
+        <label for="c">我是C</label>
+        <input v-model="check" type="checkbox" value="D" id="d" />
+        <label for="d">我是D</label>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                // message:"hello world"
+                message: "xiedong",
+                check: ["A"],
+                num1: "",
+                num2: "",
+                msg: "  332312     "
+            }
+        })
+    </script>
+</body>
+
+</html>
