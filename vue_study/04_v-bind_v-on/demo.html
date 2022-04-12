@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02 v-bind v-on 学习</title>
+    <style>
+        .active {
+            color: red;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+
+<!-- 只有在表单中才能使用v-model -->
+
+<body>
+    <div id="app">
+        <input v-model="message" type="text" />
+        <div v-bind:class="message=='red'?'active':''">
+            我是来测试v-bind的
+        </div>
+        <div :class="message=='red'?'active':''">
+            我是来测试v-bind的
+        </div>
+
+        <div :style="{color:message}">
+            我是来测试v-bind绑定style的
+        </div>
+
+        <ul>
+            <li v-for="(item,key) in list" :key="key" :class="item.hidden?'hidden':''">
+                {{key+"_______"+item.name}}
+            </li>
+        </ul>
+
+
+        <p>------</p>
+
+        <button v-on:click="add(3)">+</button>
+        <span>{{num0}}</span>
+        <button @click="sub">-</button>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#app",
+            data: {
+                // message:"hello world"
+                message: "xdddd",
+                check: ["A"],
+                num0: 0,
+                num1: "",
+                num2: "",
+                msg: "  332312  1   ",
+                list: [
+                    { name: "张三1", hidden: true },
+                    { name: "张三2", hidden: false },
+                    { name: "张三3", hidden: false }]
+            },
+            methods: {
+                add(skip) {
+                    console.log(skip)
+                    this.num0++
+                },
+                sub() {
+                    this.num0--
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
