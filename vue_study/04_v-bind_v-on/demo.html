@@ -22,7 +22,7 @@
 
 <body>
     <div id="app">
-        <input v-model="message" type="text" />
+        <!-- <input v-model="message" type="text" />
         <div v-bind:class="message=='red'?'active':''">
             我是来测试v-bind的
         </div>
@@ -46,6 +46,17 @@
         <button v-on:click="add(3)">+</button>
         <span>{{num0}}</span>
         <button @click="sub">-</button>
+
+
+        <br> -->
+        <ul>
+            <li v-for="(item,key) in list" :key="key" @click="active=key">
+                {{item}}
+            </li>
+        </ul>
+        <div v-show="active==0">0000</div>
+        <div v-show="active==1">1111</div>
+        <div v-show="active==2">22222</div>
     </div>
     <!-- 开发环境版本，包含了有帮助的命令行警告 -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
@@ -61,10 +72,14 @@
                 num1: "",
                 num2: "",
                 msg: "  332312  1   ",
+                // list: [
+                //     { name: "张三1", hidden: true },
+                //     { name: "张三2", hidden: false },
+                //     { name: "张三3", hidden: false }],
                 list: [
-                    { name: "张三1", hidden: true },
-                    { name: "张三2", hidden: false },
-                    { name: "张三3", hidden: false }]
+
+                    "第一页", "第二页", "第三页"
+                ]
             },
             methods: {
                 add(skip) {
