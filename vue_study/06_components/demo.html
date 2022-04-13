@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <div id="app">
+        {{message}}
+        <xie></xie>
+        <xiexie></xiexie>
+    </div>
+
+    <template id="xiexie">
+        <h1>{{hello}}</h1>
+
+    </template>
+
+
+    <script type="x-template" id="xiexie1">
+        <h1>{{hello}}+xxxx</h1>
+    </script>
+    <script>
+
+        // Vue.component("xie", {
+        //     "name": "xie",
+        //     data() {
+        //         return {
+        //             hello: "hello vue"
+        //         }
+        //     },
+        //     template: "<h1>{{hello}}</h1>"
+        // })
+
+
+        var xiexie = {
+            "name": "xiexie",
+            data() {
+                return {
+                    hello: "hello vue xiexie"
+                }
+            },
+            // template: "<h1>{{hello}}</h1>"
+            // template: "#xiexie"
+            template: "#xiexie1"
+        }
+
+        var app = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    message: "hello world"
+                }
+            },
+            methods: {
+
+            },
+            components: {
+                xiexie: xiexie
+            }
+        })
+    </script>
+</body>
+
+</html>
