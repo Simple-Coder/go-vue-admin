@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <div id="app">
+        <father></father>
+    </div>
+    <script type="x-template" id="father">
+        <div>
+            {{hello}}
+        <children :thief="thief">
+            <template slot="slot1" scope="scope">
+
+                <div style="color:red">{{scope.text}}</div>
+                <div style="color:blue">{{scope.myid}}</div>
+            </template>
+        </children>
+        
+        </div>
+    </script>
+    <script type="x-template" id="children">
+        <div>
+          <button @click="thief(hello)">使用一下</button>
+          <slot name="slot1" v-for="item in items" :text="item.text" :myid="item.id">我是插槽1</slot>
+          <slot name="slot2">我是插槽2</slot>
+        </div>
+    </script>
+
+    <script>
+        var children = {
+            props: ["thief"],
+            name: "children",
+            template: "#children",
+            data() {
+                return {
+                    hello: "hello children",
+                    items: [{
+                        id: 1,
+                        text: "xiedong"
+                    }, {
+                        id: 2,
+                        text: "dong"
+                    }]
+                }
+            }
+        }
+
+
+        var father = {
+            name: "father",
+            template: "#father",
+            components: {
+                children: children
+            },
+            data() {
+                return {
+                    hello: ""
+                }
+            },
+            methods: {
+                thief(glod) {
+                    this.hello = glod
+                }
+            }
+        }
+
+
+
+        var app = new Vue({
+            el: "#app",
+            data() {
+                return {
+                    message: "hello world"
+                }
+            },
+            components: {
+                father: father,
+                children: children
+            }
+        })
+    </script>
+</body>
+
+</html>
