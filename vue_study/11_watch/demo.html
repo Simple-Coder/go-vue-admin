@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <div id="app">
+
+        <button @click="testWatch">侦听器探测</button>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                // watcher: "123"
+                watcher: {
+                    a: 123
+                }
+            },
+            methods: {
+                testWatch() {
+                    // this.watcher = "345"
+                    this.watcher.a = 456
+                }
+            },
+            // watch: {
+            //     watcher: function (newVal, old) {
+            //         console.log(newVal, old)
+            //     }
+            // }
+
+            // watch: {
+            //     watcher: [
+            //         function () {
+            //             console.log(
+            //                 "第一个"
+            //             )
+            //         },
+            //         function () {
+            //             console.log(
+            //                 "第2个"
+            //             )
+            //         }
+            //     ]
+            // }
+            watch: {
+                // 'watcher.a': function (newVal, oldVal) {
+                //     console.log(newVal, oldVal)
+                // }
+                watcher: {
+                    handler: function (newVal, oldVal) {
+                        console.log("我真听到了")
+                    },
+                    deep: true
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>
