@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <div id="app">
+
+        <div>
+            <ul>
+                <li v-for="(item,index) in header">
+                    {{item}}
+
+                </li>
+                {{fullName}}
+                <button @click="pushFace('样貌')">添加属性</button>
+        </div>
+
+    </div>
+
+    <script>
+
+        var app = new Vue({
+            el: "#app",
+            data: {
+                "color": "red",
+                items: [{ "name": "张三1" }, { "name": "张三2" }],
+                header: ["身高", "体重", "年龄"],
+                firstName: "xd",
+                lastName: "谢冬"
+            },
+            methods: {
+                pushFace(face) {
+                    this.header.push(face);
+                }
+            },
+            computed: {
+                // fullName() {
+                //     return this.firstName + this.lastName
+                // }
+
+                fullName: {
+                    get: function () { },
+                    set: function (newVal) {
+
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
