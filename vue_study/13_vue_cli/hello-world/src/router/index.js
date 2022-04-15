@@ -32,7 +32,8 @@ const routes = [
         component: xd
       },
       {
-        path: 'user/:id',
+        // path: 'user/:id',
+        path: 'user',
         name: 'user',
         component: User
       }

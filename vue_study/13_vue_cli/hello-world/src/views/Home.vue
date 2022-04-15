@@ -13,9 +13,21 @@
           <!-- <router-link :to="'/home/user/' + (key + 1)">
             我是用户{{ key }}
           </router-link> -->
-          <router-link
+
+          <!-- <router-link
             :to="{
               name: 'user',
+              query: {
+                id: '声明式传参params' + (key + 1),
+              },
+            }"
+          >
+            我是用户{{ key }}
+          </router-link> -->
+
+          <router-link
+            :to="{
+              path: '/home/user',
               query: {
                 id: '声明式传参params' + (key + 1),
               },
