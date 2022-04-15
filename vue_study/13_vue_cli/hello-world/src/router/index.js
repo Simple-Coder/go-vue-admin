@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 
 const xd = () => import('../views/xd.vue')
 const NotFound = () => import('../views/NotFound.vue')
+const User = () => import('../views/User.vue')
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
         path: 'xd',
         name: 'xd',
         component: xd
+      },
+      {
+        path: 'user/:id',
+        name: 'user',
+        component: User
       }
     ]
   },
