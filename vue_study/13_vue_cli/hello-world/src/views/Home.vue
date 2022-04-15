@@ -10,7 +10,17 @@
 
       <ul>
         <li v-for="(item, key) in 5" :key="key">
-          <router-link :to="'/home/user/' + (key + 1)">
+          <!-- <router-link :to="'/home/user/' + (key + 1)">
+            我是用户{{ key }}
+          </router-link> -->
+          <router-link
+            :to="{
+              name: 'user',
+              params: {
+                id: '声明式传参params' + (key + 1),
+              },
+            }"
+          >
             我是用户{{ key }}
           </router-link>
         </li>

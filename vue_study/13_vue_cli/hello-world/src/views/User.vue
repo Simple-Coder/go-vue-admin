@@ -1,7 +1,9 @@
 <template>
   <div>
     我是用户页面
-    <p>Url传参：{{ this.$route.params.id }}</p>
+    <p>Url传参:{{ this.$route.params.id }}</p>
+    <br />
+    <p>声明Url传参:{{ this.$route.params.id }}</p>
   </div>
 </template>
 
