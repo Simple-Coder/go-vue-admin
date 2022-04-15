@@ -4,6 +4,8 @@
     <p>Url传参:{{ this.$route.params.id }}</p>
     <br />
     <p>声明Url传参:{{ this.$route.params.id }}</p>
+    <br />
+    <p>声明query传参:{{ this.$route.query.id }}</p>
   </div>
 </template>
 

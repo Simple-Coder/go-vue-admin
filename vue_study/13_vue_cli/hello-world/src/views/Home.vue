@@ -16,7 +16,7 @@
           <router-link
             :to="{
               name: 'user',
-              params: {
+              query: {
                 id: '声明式传参params' + (key + 1),
               },
             }"
