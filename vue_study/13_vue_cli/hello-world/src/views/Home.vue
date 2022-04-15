@@ -9,7 +9,8 @@
       <router-link to="/home/xd">xiedong</router-link> |
 
       <ul>
-        <li v-for="(item, key) in 5" :key="key">
+        <li @click="ToLink(key + 1)" v-for="(item, key) in 5" :key="key">
+          我是用户{{ key }}
           <!-- <router-link :to="'/home/user/' + (key + 1)">
             我是用户{{ key }}
           </router-link> -->
@@ -25,7 +26,7 @@
             我是用户{{ key }}
           </router-link> -->
 
-          <router-link
+          <!-- <router-link
             :to="{
               path: '/home/user',
               query: {
@@ -34,7 +35,9 @@
             }"
           >
             我是用户{{ key }}
-          </router-link>
+          </router-link> -->
+
+          <!-- <router-link :to="ToLink(key + 1)"> 我是用户{{ key }} </router-link> -->
         </li>
       </ul>
     </div>
@@ -51,6 +54,16 @@ export default {
   name: "Home",
   components: {
     HelloWorld,
+  },
+  methods: {
+    ToLink(id) {
+      this.$router.push({
+        path: "/home/user",
+        query: {
+          id: id,
+        },
+      });
+    },
   },
 };
 </script>
