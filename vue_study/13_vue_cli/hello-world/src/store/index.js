@@ -8,20 +8,25 @@ export default new Vuex.Store({
     myNum: 0
   },
   mutations: {
-    addNum(state) {
-      state.myNum++
+    addNum(state, params) {
+      // state.myNum++
+      state.myNum = state.myNum + params.num
     },
     subNum(state) {
       state.myNum--
     }
   },
   actions: {
-    asyncAdd(context) {
+    asyncAdd(context, params) {
       setTimeout(() => {
-        context.commit('addNum')
+        context.commit('addNum', params)
       }, 5000);
     }
   },
   modules: {
+  },
+  //在state之前做数据处理
+  getters: {
+    getNum: (state) => state.myNum + 10
   }
 })
