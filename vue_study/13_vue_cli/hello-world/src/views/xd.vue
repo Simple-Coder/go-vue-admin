@@ -1,6 +1,9 @@
 <template>
   <div>
-    {{ message }}
+    store: {{ $store.state.myNum }} <br />
+    vue: {{ xdNum }} <br />
+    <button @click="sub()">-</button> <br />
+    <button @click="add()">+</button>
   </div>
 </template>
 
@@ -9,6 +12,7 @@ export default {
   data() {
     return {
       message: "谢冬",
+      xdNum: 0,
     };
   },
 
@@ -16,7 +20,16 @@ export default {
 
   computed: {},
 
-  methods: {},
+  methods: {
+    add() {
+      this.$store.commit("addNum");
+      this.xdNum++;
+    },
+    sub() {
+      this.$store.commit("subNum");
+      this.xdNum--;
+    },
+  },
 };
 </script>
 <style lang='css' scoped>
