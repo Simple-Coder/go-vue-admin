@@ -1,10 +1,10 @@
 <template>
   <div>
-    store: {{ $store.state.myNum }} <br />
+    store: {{ $store.state.xd.myNum }} <br />
     vue: {{ xdNum }} <br />
     <button @click="sub()">-</button> <br />
     <button @click="add()">+</button> <br />
-    getters: {{ $store.getters.getNum }} <br />
+    getters: {{ $store.getters["xd/getNum"] }} <br />
   </div>
 </template>
 
@@ -23,16 +23,16 @@ export default {
 
   methods: {
     add() {
-      this.$store.commit("addNum", {
+      this.$store.commit("xd/addNum", {
         num: 5,
       });
       this.xdNum++;
-      this.$store.dispatch("asyncAdd", {
+      this.$store.dispatch("xd/asyncAdd", {
         num: 5,
       });
     },
     sub() {
-      this.$store.commit("subNum");
+      this.$store.commit("xd/subNum");
       this.xdNum--;
     },
   },
